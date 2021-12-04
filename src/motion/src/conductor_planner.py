@@ -100,7 +100,7 @@ class PathPlanner(object):
         path: A moveit_msgs/RobotTrajectory path
         """
 
-        (plan,fraction) = self._group.compute_cartesian_path(waypoints,.05,0.0)
+        (plan,fraction) = self._group.compute_cartesian_path(waypoints,.02,0.0)
 
         return plan
 
