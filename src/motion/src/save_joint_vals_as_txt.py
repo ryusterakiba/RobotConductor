@@ -26,12 +26,13 @@ def main():
     while not rospy.is_shutdown():
 
         try:
+            arm_name = input("Enter arm name: ")
             #Both arms to initial position
-            planner        = PathPlanner("both_arms",1)
+            planner        = PathPlanner(arm_name,1)
             current_joint  = planner._group.get_current_joint_values()
 
             pose_name = input("Enter name for pose: ")
-            file_location = ''
+            file_location = '/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/src/motion/positions/'
             np.savetxt(pose_name+".txt",np.array(current_joint))
             
         except Exception as e:

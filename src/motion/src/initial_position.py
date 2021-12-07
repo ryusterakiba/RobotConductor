@@ -27,7 +27,7 @@ def main():
 
         try:
             #Both arms to initial position
-            planner = PathPlanner("both_arms",.6)
+            planner = PathPlanner("both_arms",1)
             joint_goal  = planner._group.get_current_joint_values()
             print(joint_goal)
 
