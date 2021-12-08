@@ -39,9 +39,9 @@ End/cutoff: left_last_end
 
 Dynamics:
 Crescendo- 
--start:
--intermediate: 
--end:
+-start: left_crescendo_start
+-intermediate: left_crescendo_n_4 (n = 1,2,3)
+-end: left_crescendo_end
 
 Decrescendo-
 -start:

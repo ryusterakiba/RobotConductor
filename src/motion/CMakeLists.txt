@@ -15,6 +15,8 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   tf2_ros
+  ## The below is for music_commands.msg
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -57,6 +59,12 @@ find_package(catkin REQUIRED COMPONENTS
 #   Message2.msg
 # )
 
+## The below is for music_commands.msg
+add_message_files(
+  FILES
+  music_commands.msg
+)
+
 ## Generate services in the 'srv' folder
 # add_service_files(
 #   FILES
@@ -76,6 +84,12 @@ find_package(catkin REQUIRED COMPONENTS
 #   DEPENDENCIES
 #   geometry_msgs#   moveit_msgs#   std_msgs
 # )
+
+## The below is for music_commands.msg
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -111,6 +125,9 @@ catkin_package(
 #  LIBRARIES motion
 #  CATKIN_DEPENDS baxter_tools geometry_msgs moveit_msgs roscpp rospy std_msgs tf2_ros
 #  DEPENDS system_lib
+
+  ## The below is for music_commands.msg
+  CATKIN_DEPENDS baxter_tools geometry_msgs moveit_msgs roscpp rospy std_msgs tf2_ros message_runtime
 )
 
 ###########

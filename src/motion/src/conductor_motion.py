@@ -77,9 +77,15 @@ def main():
     right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4","right_beat_1",
                             "right_beat_2","right_beat_3","right_beat_4","right_beat_1",
                             "right_last_hold","right_last_swing","right_last_end"]
-    left_arm_motion  = ["left_neutral","left_neutral","left_neutral","left_neutral","left_beat_1",
-                            "left_beat_2","left_beat_3","left_beat_4","left_beat_1",
+    # left_arm_motion  = ["left_neutral","left_neutral","left_neutral","left_neutral","left_beat_1",
+    #                         "left_beat_2","left_beat_3","left_beat_4","left_beat_1",
+    #                         "left_last_hold","left_last_swing","left_last_end"]
+    left_arm_motion  = ["left_crescendo_start","left_crescendo_1_4","left_crescendo_2_4",
+                            "left_crescendo_3_4","left_crescendo_end",
+                            "left_neutral","left_neutral","left_beat_4","left_beat_1",
                             "left_last_hold","left_last_swing","left_last_end"]
+
+
     tempo = np.ones(12)
     tempo[9:] = np.ones(3)*1.5
 
@@ -90,14 +96,14 @@ def main():
     go_to_joint_position("both_arms","neutral_both")
     #go_to_joint_position("left_arm","left_beat_1")
 
-    # go_to_joint_position("left_arm","left_beat_2")
-    # # go_to_joint_position("left_arm","left_last_hold")
-    # go_to_joint_position("right_arm","right_beat_2")
-    # go_to_joint_position("left_arm","left_beat_3")
-    # go_to_joint_position("left_arm","left_beat_4")
+    go_to_joint_position("left_arm","left_crescendo_start")
+    go_to_joint_position("left_arm","left_crescendo_1_4")
+    go_to_joint_position("left_arm","left_crescendo_2_4")
+    # go_to_joint_position("left_arm","left_crescendo_3_4")
+    # go_to_joint_position("left_arm","left_crescendo_end")
 
     #Start
-    timed_joint_path(right_arm_motion,left_arm_motion,1.8,tempo)
+    # timed_joint_path(right_arm_motion,left_arm_motion,1.8,tempo)
 
 
 if __name__ == '__main__':
