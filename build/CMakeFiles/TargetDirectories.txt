@@ -130,6 +130,13 @@
 /home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/motion/CMakeFiles/install/local.dir
 /home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/motion/CMakeFiles/baxter_interface_gencfg.dir
 /home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/motion/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir
+/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/sensing/CMakeFiles/list_install_components.dir
+/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/sensing/CMakeFiles/install.dir
+/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/sensing/CMakeFiles/rebuild_cache.dir
+/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/sensing/CMakeFiles/install/strip.dir
+/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/sensing/CMakeFiles/install/local.dir
+/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/sensing/CMakeFiles/test.dir
+/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/sensing/CMakeFiles/edit_cache.dir
 /home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/trac_ik_lib/CMakeFiles/list_install_components.dir
 /home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/trac_ik_lib/CMakeFiles/install.dir
 /home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/trac_ik_lib/CMakeFiles/rebuild_cache.dir

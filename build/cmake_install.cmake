@@ -128,6 +128,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/gtest/cmake_install.cmake")
   include("/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/baxter_conductor_moveit_config/cmake_install.cmake")
   include("/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/motion/cmake_install.cmake")
+  include("/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/sensing/cmake_install.cmake")
   include("/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/trac_ik_lib/cmake_install.cmake")
   include("/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/trac_ik_kinematics_plugin/cmake_install.cmake")
 

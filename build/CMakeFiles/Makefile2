@@ -3325,6 +3325,24 @@ clean: motion/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory sensing
+
+# Convenience name for "all" pass in the directory.
+sensing/all:
+
+.PHONY : sensing/all
+
+# Convenience name for "clean" pass in the directory.
+sensing/clean:
+
+.PHONY : sensing/clean
+
+# Convenience name for "preinstall" pass in the directory.
+sensing/preinstall:
+
+.PHONY : sensing/preinstall
+
+#=============================================================================
 # Directory level rules for directory trac_ik_lib
 
 # Convenience name for "all" pass in the directory.

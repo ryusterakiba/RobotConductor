@@ -6,7 +6,7 @@ Right arm:
 4/4
 Beat 1: right_beat_1
 Beat 2: right_beat_2
-Beat 3: right_beat_3
+Beat 3: right_beat_3 
 Beat 4: right_beat_4
 
 3/4

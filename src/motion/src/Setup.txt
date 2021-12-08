@@ -21,4 +21,4 @@ Reset position:
 rosrun baxter_tools tuck_arms.py -u
 
 Our code
-rosrun movement conductor_complex_motion.py
+rosrun motion conductor_motion.py

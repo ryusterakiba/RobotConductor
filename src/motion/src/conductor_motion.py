@@ -42,8 +42,8 @@ def timed_joint_path(right_arm_motion,left_arm_motion,speed,tempo):
             plan = planner.plan_to_joint_goal(joint_goal, speed)
 
             #Execute
-            #if i == 0:
-            raw_input("Press Enter to go")
+            if i == 0:
+                raw_input("Press Enter to go")
             planner.execute_plan(plan,timed = True)
             rospy.sleep(time)
             planner._group.stop()
@@ -72,25 +72,28 @@ def main():
     """
     Main Script
     """
-    # right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4","right_beat_1",
-    #                         "right_beat_2","right_beat_3","right_beat_4"]
-    # left_arm_motion  = ["left_neutral","left_neutral","left_neutral","left_neutral","left_crescendo_top",
-    #                         "left_neutral","left_neutral","left_neutral"]
+    right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4","right_beat_1",
+                            "right_beat_2","right_beat_3","right_beat_4","right_beat_1",
+                            "right_last_hold","right_last_swing","right_last_end"]
+    left_arm_motion  = ["left_neutral","left_neutral","left_neutral","left_neutral","left_beat_1",
+                            "left_beat_2","left_beat_3","left_beat_4","left_beat_1",
+                            "left_last_hold","left_last_swing","left_last_end"]
 
-    right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4"]
-    left_arm_motion  = ["left_beat_1","left_beat_2","left_beat_3","left_beat_4"]
+    #right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4"]
+    #left_arm_motion  = ["left_beat_1","left_beat_2","left_beat_3","left_beat_4"]
 
     #Initial Position
-    #go_to_joint_position("both_arms","neutral_both")
+    go_to_joint_position("both_arms","neutral_both")
     #go_to_joint_position("left_arm","left_beat_1")
 
     # go_to_joint_position("left_arm","left_beat_2")
     # # go_to_joint_position("left_arm","left_last_hold")
-    go_to_joint_position("right_arm","right_beat_3")
+    # go_to_joint_position("right_arm","right_beat_2")
+    # go_to_joint_position("left_arm","left_beat_3")
     # go_to_joint_position("left_arm","left_beat_4")
 
     #Start
-    #timed_joint_path(right_arm_motion,left_arm_motion,1.8,2)
+    timed_joint_path(right_arm_motion,left_arm_motion,1.8,1.0)
 
 
 if __name__ == '__main__':

@@ -7,5 +7,6 @@
 subdirs(gtest)
 subdirs(baxter_conductor_moveit_config)
 subdirs(motion)
+subdirs(sensing)
 subdirs(trac_ik_lib)
 subdirs(trac_ik_kinematics_plugin)
