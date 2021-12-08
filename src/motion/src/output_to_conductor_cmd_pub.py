@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
 Execute complex conducting path sequence
-Dean Zhang
+Dean Zhang, Ryu Akiba
 """
 
 from baxter_interface import Limb

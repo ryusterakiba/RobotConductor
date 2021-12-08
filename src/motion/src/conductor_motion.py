@@ -16,6 +16,7 @@ from moveit_msgs.msg import OrientationConstraint, RobotTrajectory
 from geometry_msgs.msg import PoseStamped, Pose
 from moveit_commander import roscpp_initialize
 import moveit_commander
+from motion.msg import music_commands
 
 from conductor_planner import PathPlanner
 
@@ -70,45 +71,47 @@ def go_to_joint_position(arm,position):
 
 # ============================================================================ #
 
-def main():
+def main(message):
     """
     Main Script
     """
-    right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4","right_beat_1",
-                            "right_beat_2","right_beat_3","right_beat_4","right_beat_1",
-                            "right_last_hold","right_last_swing","right_last_end"]
+    # right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4","right_beat_1",
+    #                         "right_beat_2","right_beat_3","right_beat_4","right_beat_1",
+    #                         "right_last_hold","right_last_swing","right_last_end"]
     # left_arm_motion  = ["left_neutral","left_neutral","left_neutral","left_neutral","left_beat_1",
     #                         "left_beat_2","left_beat_3","left_beat_4","left_beat_1",
     #                         "left_last_hold","left_last_swing","left_last_end"]
-    left_arm_motion  = ["left_crescendo_start","left_crescendo_1_4","left_crescendo_2_4",
-                            "left_crescendo_3_4","left_crescendo_end",
-                            "left_neutral","left_neutral","left_beat_4","left_beat_1",
-                            "left_last_hold","left_last_swing","left_last_end"]
+    # left_arm_motion  = ["left_crescendo_start","left_crescendo_1_4","left_crescendo_2_4",
+    #                         "left_crescendo_3_4","left_crescendo_end",
+    #                         "left_neutral","left_neutral","left_beat_4","left_beat_1",
+    #                         "left_last_hold","left_last_swing","left_last_end"]
 
 
-    tempo = np.ones(12)
-    tempo[9:] = np.ones(3)*1.5
+    # tempo = np.ones(12)
+    # tempo[9:] = np.ones(3)*1.5
 
-    #right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4"]
-    #left_arm_motion  = ["left_beat_1","left_beat_2","left_beat_3","left_beat_4"]
 
     #Initial Position
     go_to_joint_position("both_arms","neutral_both")
-    #go_to_joint_position("left_arm","left_beat_1")
 
-    go_to_joint_position("left_arm","left_crescendo_start")
-    go_to_joint_position("left_arm","left_crescendo_1_4")
-    go_to_joint_position("left_arm","left_crescendo_2_4")
-    # go_to_joint_position("left_arm","left_crescendo_3_4")
-    # go_to_joint_position("left_arm","left_crescendo_end")
 
-    #Start
-    # timed_joint_path(right_arm_motion,left_arm_motion,1.8,tempo)
+    #Read command from conductor_commands topic
+    tempo = message.tempo
+    right_arm_motions = message.right_arm_motions
+    left_arm_motions = message.left_arm_motions
 
+    #Execute commands
+    # TODO: ideally, scale arm velocity based on tempo with a linear function
+    raw_input("Press Enter to go! Will begin with a pre-beat motion...")
+    timed_joint_path(right_arm_motions,left_arm_motions,1.8,tempo)
+
+def listener():
+    rospy.Subscriber("conductor_commands",music_commands,main)
+    rospy.spin()
 
 if __name__ == '__main__':
     joint_state_topic = ['joint_states:=/robot/joint_states']
     moveit_commander.roscpp_initialize(joint_state_topic)
     rospy.init_node('moveit_node',anonymous=False)
     roscpp_initialize(sys.argv)
-    main()
+    listener()
