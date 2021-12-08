@@ -32,8 +32,10 @@ Use joint positions
 '''
 def timed_joint_path(right_arm_motion,left_arm_motion,speed,tempo):
     planner = PathPlanner("both_arms")
-    time = rospy.Duration.from_sec(tempo)
+    
     for i in range(len(right_arm_motion)):
+        time = rospy.Duration.from_sec(tempo[i])
+
         joint_goal_right = np.loadtxt(file_location + right_arm_motion[i]+ ".txt" ).tolist()
         joint_goal_left  = np.loadtxt(file_location + left_arm_motion[i]+ ".txt").tolist()
         joint_goal = joint_goal_left+joint_goal_right
@@ -78,6 +80,8 @@ def main():
     left_arm_motion  = ["left_neutral","left_neutral","left_neutral","left_neutral","left_beat_1",
                             "left_beat_2","left_beat_3","left_beat_4","left_beat_1",
                             "left_last_hold","left_last_swing","left_last_end"]
+    tempo = np.ones(12)
+    tempo[9:] = np.ones(3)*1.5
 
     #right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4"]
     #left_arm_motion  = ["left_beat_1","left_beat_2","left_beat_3","left_beat_4"]
@@ -93,7 +97,7 @@ def main():
     # go_to_joint_position("left_arm","left_beat_4")
 
     #Start
-    timed_joint_path(right_arm_motion,left_arm_motion,1.8,1.0)
+    timed_joint_path(right_arm_motion,left_arm_motion,1.8,tempo)
 
 
 if __name__ == '__main__':
