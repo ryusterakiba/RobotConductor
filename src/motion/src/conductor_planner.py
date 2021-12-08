@@ -8,8 +8,11 @@ Modified by Ryu Akiba for robot conductor project
 
 import sys
 import rospy
+import copy
+
 import moveit_commander
-from moveit_msgs.msg import OrientationConstraint, Constraints
+from moveit_msgs.msg import OrientationConstraint, Constraints, RobotTrajectory
+from trajectory_msgs.msg import JointTrajectoryPoint
 from geometry_msgs.msg import PoseStamped, Pose
 
 class PathPlanner(object):
@@ -22,7 +25,7 @@ class PathPlanner(object):
     _group: moveit_commander.MoveGroupCommander; the move group is moveit's primary planning class
     _planning_scene_publisher: ros publisher; publishes to the planning scene
     """
-    def __init__(self, group_name,movement_velocity):
+    def __init__(self, group_name):
         """
         Constructor.
 
@@ -30,7 +33,7 @@ class PathPlanner(object):
         group_name: the name of the move_group.
             For Baxter, this would be 'left_arm' or 'right_arm'
         """
-
+        
         # If the node is shutdown, call this function    
         rospy.on_shutdown(self.shutdown)
 
@@ -47,14 +50,15 @@ class PathPlanner(object):
         self._group = moveit_commander.MoveGroupCommander(group_name)
 
         # Set the maximum time MoveIt will try to plan before giving up
-        self._group.set_planning_time(8)
+        self._group.set_planning_time(2)
 
         # Set the bounds of the workspace
         self._group.set_workspace([-2, -2, -2, 2, 2, 2])
 
         # Set the velocity of the arm
-        self._group.set_max_velocity_scaling_factor(movement_velocity)
-
+        self._group.set_max_velocity_scaling_factor(1.0))
+        self._group.set_max_acceleration_scaling_factor(1.0)
+        
         # Sleep for a bit to ensure that all inititialization has finished
         rospy.sleep(0.5)
 
@@ -67,7 +71,7 @@ class PathPlanner(object):
         self._group = None
         rospy.loginfo("Stopping Path Planner")
 
-    def plan_to_pose(self, target, orientation_constraints):
+    def plan_to_pose(self, target):
         """
         Generates a plan given an end effector pose subject to orientation constraints
 
@@ -82,13 +86,42 @@ class PathPlanner(object):
         self._group.set_pose_target(target)
         self._group.set_start_state_to_current_state()
 
-        # constraints = Constraints()
-        # constraints.orientation_constraints = orientation_constraints
-        # self._group.set_path_constraints(constraints)
 
         plan = self._group.plan()
 
         return plan
+
+    def plan_to_joint_goal(self, target,speed):
+        """
+        Generates a plan given an joint configuration
+
+        Inputs:
+        target: A geometry_msgs/PoseStamped message containing the end effector pose goal
+
+        Outputs:
+        path: A moveit_msgs/RobotTrajectory path scaled to speed
+        """
+        try:
+            
+        self._group.set_joint_value_target(target)
+        self._group.set_start_state_to_current_state()
+
+        plan = self._group.plan()
+
+        new_plan = copy.deepcopy(plan)
+        n_points = len(plan.joint_trajectory.points)
+        n_joints = len(plan.joint_trajectory.joint_names) #should be 14 for both arms
+        
+        #Iterate over JointTrajectoryPoint to scale velocity
+        for i in range(n_points):            
+            time_step = plan.joint_trajectory.points[i].time_from_start / speed
+            new_plan.joint_trajectory.points[i].time_from_start = time_step
+                
+            for j in range(n_joints):
+                scaled_speed = plan.joint_trajectory.points[i].velocities[j] * speed
+                new_plan.joint_trajectory.points[i].velocities.append(plan.joint_trajectory.points[i].velocities[j])
+
+        return new_plan
 
     def plan_path_with_waypoints(self, waypoints):
         """
@@ -104,7 +137,7 @@ class PathPlanner(object):
 
         return plan
 
-    def execute_plan(self, plan):
+    def execute_plan(self, plan,timed = False):
         """
         Uses the robot's built-in controllers to execute a plan
 
@@ -112,6 +145,6 @@ class PathPlanner(object):
         plan: a moveit_msgs/RobotTrajectory plan
         """
 
-        return self._group.execute(plan, True)
+        return self._group.execute(plan, wait = not(timed))
 
         
