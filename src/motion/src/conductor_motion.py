@@ -31,31 +31,32 @@ A way without using waypoints.
 Use joint positions
 '''
 def timed_joint_path(right_arm_motion,left_arm_motion,speed,tempo):
-    while not rospy.is_shutdown():
-        planner = PathPlanner("both_arms")
-        time = 60/tempo
-        for i in range(len(right_arm_motion)):
-            joint_goal_right = np.loadtxt(file_location + right_arm_motion[i]+ ".txt" ).tolist()
-            joint_goal_left  = np.loadtxt(file_location + left_arm_motion[i]+ ".txt").tolist()
-            joint_goal = joint_goal_left+joint_goal_right
-            try:
-                #Plan
-                plan = planner.plan_to_joint_goal(joint_goal, speed)
+    planner = PathPlanner("both_arms")
+    time = rospy.Duration.from_sec(tempo)
+    for i in range(len(right_arm_motion)):
+        joint_goal_right = np.loadtxt(file_location + right_arm_motion[i]+ ".txt" ).tolist()
+        joint_goal_left  = np.loadtxt(file_location + left_arm_motion[i]+ ".txt").tolist()
+        joint_goal = joint_goal_left+joint_goal_right
+        try:
+            #Plan
+            plan = planner.plan_to_joint_goal(joint_goal, speed)
 
-                #Execute
-                #raw_input("Press Enter to go")
-                planner.execute_plan(plan,timed = True)
-                rospy.sleep(time)
-                planner._group.stop()
-                
-            except Exception as e:
-                print e
-                traceback.print_exc()
+            #Execute
+            #if i == 0:
+            raw_input("Press Enter to go")
+            planner.execute_plan(plan,timed = True)
+            rospy.sleep(time)
+            planner._group.stop()
+            
+        except Exception as e:
+            print e
+            traceback.print_exc()
+    
 
-def go_to_joint_position(position):
+def go_to_joint_position(arm,position):
     while not rospy.is_shutdown():
         try:
-            planner = PathPlanner("both_arms")
+            planner = PathPlanner(arm)
             joint_goal = np.loadtxt(file_location + position + ".txt").tolist()
             planner._group.go(joint_goal,wait=True)
 
@@ -71,15 +72,25 @@ def main():
     """
     Main Script
     """
-    right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4","right_beat_1"]
-    left_arm_motion  = ["left_neutral","left_neutral","left_crescendo_bot","left_crescendo_top","left_neutral"]
+    # right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4","right_beat_1",
+    #                         "right_beat_2","right_beat_3","right_beat_4"]
+    # left_arm_motion  = ["left_neutral","left_neutral","left_neutral","left_neutral","left_crescendo_top",
+    #                         "left_neutral","left_neutral","left_neutral"]
+
+    right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4"]
+    left_arm_motion  = ["left_beat_1","left_beat_2","left_beat_3","left_beat_4"]
 
     #Initial Position
-    go_to_joint_position("neutral_both")
+    #go_to_joint_position("both_arms","neutral_both")
+    #go_to_joint_position("left_arm","left_beat_1")
+
+    # go_to_joint_position("left_arm","left_beat_2")
+    # # go_to_joint_position("left_arm","left_last_hold")
+    go_to_joint_position("right_arm","right_beat_3")
+    # go_to_joint_position("left_arm","left_beat_4")
 
     #Start
-    raw_input("Press Enter to go")
-    timed_joint_path(right_arm_motion,left_arm_motion,1,60)
+    #timed_joint_path(right_arm_motion,left_arm_motion,1.8,2)
 
 
 if __name__ == '__main__':

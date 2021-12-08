@@ -5,4 +5,7 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs(gtest)
+subdirs(baxter_conductor_moveit_config)
 subdirs(motion)
+subdirs(trac_ik_lib)
+subdirs(trac_ik_kinematics_plugin)

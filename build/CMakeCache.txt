@@ -17,6 +17,24 @@
 //Build shared libraries (DLLs).
 BUILD_SHARED_LIBS:BOOL=ON
 
+//Boost date_time library (debug)
+Boost_DATE_TIME_LIBRARY_DEBUG:FILEPATH=/usr/lib/x86_64-linux-gnu/libboost_date_time.so
+
+//Boost date_time library (release)
+Boost_DATE_TIME_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libboost_date_time.so
+
+//The directory containing a CMake configuration file for Boost.
+Boost_DIR:PATH=Boost_DIR-NOTFOUND
+
+//Path to a file.
+Boost_INCLUDE_DIR:PATH=/usr/include
+
+//Boost library directory DEBUG
+Boost_LIBRARY_DIR_DEBUG:PATH=/usr/lib/x86_64-linux-gnu
+
+//Boost library directory RELEASE
+Boost_LIBRARY_DIR_RELEASE:PATH=/usr/lib/x86_64-linux-gnu
+
 //List of ';' separated packages to exclude
 CATKIN_BLACKLIST_PACKAGES:STRING=
 
@@ -226,6 +244,9 @@ LSB_RELEASE_EXECUTABLE:FILEPATH=/usr/bin/lsb_release
 //Path to a program.
 NOSETESTS:FILEPATH=/usr/bin/nosetests-2.7
 
+//pkg-config executable
+PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
+
 //Path to a program.
 PYTHON_EXECUTABLE:FILEPATH=/usr/bin/python2
 
@@ -271,6 +292,12 @@ actionlib_DIR:PATH=/opt/ros/kinetic/share/actionlib/cmake
 //The directory containing a CMake configuration file for actionlib_msgs.
 actionlib_msgs_DIR:PATH=/opt/ros/kinetic/share/actionlib_msgs/cmake
 
+//Value Computed by CMake
+baxter_conductor_moveit_config_BINARY_DIR:STATIC=/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/baxter_conductor_moveit_config
+
+//Value Computed by CMake
+baxter_conductor_moveit_config_SOURCE_DIR:STATIC=/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/src/baxter_conductor_moveit_config
+
 //The directory containing a CMake configuration file for baxter_core_msgs.
 baxter_core_msgs_DIR:PATH=/scratch/shared/baxter_ws/devel/share/baxter_core_msgs/cmake
 
@@ -292,6 +319,12 @@ baxter_tools_DIR:PATH=/scratch/shared/baxter_ws/devel/share/baxter_tools/cmake
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/kinetic/share/catkin/cmake
 
+//The directory containing a CMake configuration file for class_loader.
+class_loader_DIR:PATH=/opt/ros/kinetic/share/class_loader/cmake
+
+//The directory containing a CMake configuration file for cmake_modules.
+cmake_modules_DIR:PATH=/opt/ros/kinetic/share/cmake_modules/cmake
+
 //The directory containing a CMake configuration file for control_msgs.
 control_msgs_DIR:PATH=/opt/ros/kinetic/share/control_msgs/cmake
 
@@ -303,6 +336,12 @@ cv_bridge_DIR:PATH=/opt/ros/kinetic/share/cv_bridge/cmake
 
 //The directory containing a CMake configuration file for dynamic_reconfigure.
 dynamic_reconfigure_DIR:PATH=/opt/ros/kinetic/share/dynamic_reconfigure/cmake
+
+//The directory containing a CMake configuration file for eigen_conversions.
+eigen_conversions_DIR:PATH=/opt/ros/kinetic/share/eigen_conversions/cmake
+
+//The directory containing a CMake configuration file for eigen_stl_containers.
+eigen_stl_containers_DIR:PATH=/opt/ros/kinetic/share/eigen_stl_containers/cmake
 
 //The directory containing a CMake configuration file for gencpp.
 gencpp_DIR:PATH=/opt/ros/kinetic/share/gencpp/cmake
@@ -321,6 +360,9 @@ gennodejs_DIR:PATH=/opt/ros/kinetic/share/gennodejs/cmake
 
 //The directory containing a CMake configuration file for genpy.
 genpy_DIR:PATH=/opt/ros/kinetic/share/genpy/cmake
+
+//The directory containing a CMake configuration file for geometric_shapes.
+geometric_shapes_DIR:PATH=/opt/ros/kinetic/share/geometric_shapes/cmake
 
 //The directory containing a CMake configuration file for geometry_msgs.
 geometry_msgs_DIR:PATH=/opt/ros/kinetic/share/geometry_msgs/cmake
@@ -365,8 +407,14 @@ gtest_force_shared_crt:BOOL=OFF
 //Dependencies for the target
 gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
 
+//The directory containing a CMake configuration file for kdl_conversions.
+kdl_conversions_DIR:PATH=/opt/ros/kinetic/share/kdl_conversions/cmake
+
+//The directory containing a CMake configuration file for kdl_parser.
+kdl_parser_DIR:PATH=/opt/ros/kinetic/share/kdl_parser/cmake
+
 //Path to a library.
-lib:FILEPATH=/opt/ros/kinetic/lib/libtf2.so
+lib:FILEPATH=/usr/lib/x86_64-linux-gnu/libm.so
 
 //The directory containing a CMake configuration file for message_filters.
 message_filters_DIR:PATH=/opt/ros/kinetic/share/message_filters/cmake
@@ -383,6 +431,9 @@ motion_BINARY_DIR:STATIC=/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/ro
 //Value Computed by CMake
 motion_SOURCE_DIR:STATIC=/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/src/motion
 
+//The directory containing a CMake configuration file for moveit_core.
+moveit_core_DIR:PATH=/opt/ros/kinetic/share/moveit_core/cmake
+
 //The directory containing a CMake configuration file for moveit_msgs.
 moveit_msgs_DIR:PATH=/opt/ros/kinetic/share/moveit_msgs/cmake
 
@@ -392,8 +443,17 @@ object_recognition_msgs_DIR:PATH=/opt/ros/kinetic/share/object_recognition_msgs/
 //The directory containing a CMake configuration file for octomap_msgs.
 octomap_msgs_DIR:PATH=/opt/ros/kinetic/share/octomap_msgs/cmake
 
+//The directory containing a CMake configuration file for pluginlib.
+pluginlib_DIR:PATH=/opt/ros/kinetic/share/pluginlib/cmake
+
+//The directory containing a CMake configuration file for random_numbers.
+random_numbers_DIR:PATH=/opt/ros/kinetic/share/random_numbers/cmake
+
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/kinetic/share/rosconsole/cmake
+
+//The directory containing a CMake configuration file for rosconsole_bridge.
+rosconsole_bridge_DIR:PATH=/opt/ros/kinetic/share/rosconsole_bridge/cmake
 
 //The directory containing a CMake configuration file for roscpp.
 roscpp_DIR:PATH=/opt/ros/kinetic/share/roscpp/cmake
@@ -410,6 +470,12 @@ rosgraph_DIR:PATH=/opt/ros/kinetic/share/rosgraph/cmake
 //The directory containing a CMake configuration file for rosgraph_msgs.
 rosgraph_msgs_DIR:PATH=/opt/ros/kinetic/share/rosgraph_msgs/cmake
 
+//The directory containing a CMake configuration file for roslib.
+roslib_DIR:PATH=/opt/ros/kinetic/share/roslib/cmake
+
+//The directory containing a CMake configuration file for rospack.
+rospack_DIR:PATH=/opt/ros/kinetic/share/rospack/cmake
+
 //The directory containing a CMake configuration file for rospy.
 rospy_DIR:PATH=/opt/ros/kinetic/share/rospy/cmake
 
@@ -421,6 +487,9 @@ sensor_msgs_DIR:PATH=/opt/ros/kinetic/share/sensor_msgs/cmake
 
 //The directory containing a CMake configuration file for shape_msgs.
 shape_msgs_DIR:PATH=/opt/ros/kinetic/share/shape_msgs/cmake
+
+//The directory containing a CMake configuration file for srdfdom.
+srdfdom_DIR:PATH=/opt/ros/kinetic/share/srdfdom/cmake
 
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/kinetic/share/std_msgs/cmake
@@ -437,8 +506,44 @@ tf2_py_DIR:PATH=/opt/ros/kinetic/share/tf2_py/cmake
 //The directory containing a CMake configuration file for tf2_ros.
 tf2_ros_DIR:PATH=/opt/ros/kinetic/share/tf2_ros/cmake
 
+//The directory containing a CMake configuration file for tf.
+tf_DIR:PATH=/opt/ros/kinetic/share/tf/cmake
+
+//The directory containing a CMake configuration file for tf_conversions.
+tf_conversions_DIR:PATH=/opt/ros/kinetic/share/tf_conversions/cmake
+
+//Dependencies for the target
+trac_ik_LIB_DEPENDS:STATIC=general;/opt/ros/kinetic/lib/libkdl_parser.so;general;/opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2;general;/opt/ros/kinetic/lib/liburdf.so;general;/usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so;general;/usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so;general;/usr/lib/x86_64-linux-gnu/liburdfdom_model.so;general;/usr/lib/x86_64-linux-gnu/liburdfdom_world.so;general;/usr/lib/x86_64-linux-gnu/libtinyxml.so;general;/opt/ros/kinetic/lib/librosconsole_bridge.so;general;/opt/ros/kinetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/usr/lib/x86_64-linux-gnu/libboost_signals.so;general;/opt/ros/kinetic/lib/librosconsole.so;general;/opt/ros/kinetic/lib/librosconsole_log4cxx.so;general;/opt/ros/kinetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so;general;/opt/ros/kinetic/lib/libroscpp_serialization.so;general;/opt/ros/kinetic/lib/libxmlrpcpp.so;general;/opt/ros/kinetic/lib/librostime.so;general;/opt/ros/kinetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;general;/usr/lib/x86_64-linux-gnu/libboost_atomic.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so;general;nlopt;general;m;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;
+
+//Value Computed by CMake
+trac_ik_kinematics_plugin_BINARY_DIR:STATIC=/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/trac_ik_kinematics_plugin
+
+//Dependencies for the target
+trac_ik_kinematics_plugin_LIB_DEPENDS:STATIC=general;/opt/ros/kinetic/lib/libmoveit_exceptions.so;general;/opt/ros/kinetic/lib/libmoveit_background_processing.so;general;/opt/ros/kinetic/lib/libmoveit_kinematics_base.so;general;/opt/ros/kinetic/lib/libmoveit_robot_model.so;general;/opt/ros/kinetic/lib/libmoveit_transforms.so;general;/opt/ros/kinetic/lib/libmoveit_robot_state.so;general;/opt/ros/kinetic/lib/libmoveit_robot_trajectory.so;general;/opt/ros/kinetic/lib/libmoveit_planning_interface.so;general;/opt/ros/kinetic/lib/libmoveit_collision_detection.so;general;/opt/ros/kinetic/lib/libmoveit_collision_detection_fcl.so;general;/opt/ros/kinetic/lib/libmoveit_kinematic_constraints.so;general;/opt/ros/kinetic/lib/libmoveit_planning_scene.so;general;/opt/ros/kinetic/lib/libmoveit_constraint_samplers.so;general;/opt/ros/kinetic/lib/libmoveit_planning_request_adapter.so;general;/opt/ros/kinetic/lib/libmoveit_profiler.so;general;/opt/ros/kinetic/lib/libmoveit_trajectory_processing.so;general;/opt/ros/kinetic/lib/libmoveit_distance_field.so;general;/opt/ros/kinetic/lib/libmoveit_collision_distance_field.so;general;/opt/ros/kinetic/lib/libmoveit_kinematics_metrics.so;general;/opt/ros/kinetic/lib/libmoveit_dynamics_solver.so;general;/opt/ros/kinetic/lib/libmoveit_utils.so;general;/usr/lib/x86_64-linux-gnu/libboost_iostreams.so;general;/usr/lib/x86_64-linux-gnu/libfcl.so;general;/opt/ros/kinetic/lib/libeigen_conversions.so;general;/opt/ros/kinetic/lib/libgeometric_shapes.so;general;/opt/ros/kinetic/lib/liboctomap.so;general;/opt/ros/kinetic/lib/liboctomath.so;general;/opt/ros/kinetic/lib/librandom_numbers.so;general;/opt/ros/kinetic/lib/libsrdfdom.so;general;/usr/lib/x86_64-linux-gnu/libtinyxml2.so;general;/opt/ros/kinetic/lib/libclass_loader.so;general;/usr/lib/libPocoFoundation.so;general;/usr/lib/x86_64-linux-gnu/libdl.so;general;/opt/ros/kinetic/lib/libroslib.so;general;/opt/ros/kinetic/lib/librospack.so;general;/usr/lib/x86_64-linux-gnu/libpython2.7.so;general;/usr/lib/x86_64-linux-gnu/libboost_program_options.so;general;/opt/ros/kinetic/lib/libtf_conversions.so;general;/opt/ros/kinetic/lib/libkdl_conversions.so;general;/opt/ros/kinetic/lib/libtf.so;general;/opt/ros/kinetic/lib/libtf2_ros.so;general;/opt/ros/kinetic/lib/libactionlib.so;general;/opt/ros/kinetic/lib/libmessage_filters.so;general;/opt/ros/kinetic/lib/libtf2.so;general;trac_ik;general;/usr/lib/x86_64-linux-gnu/libnlopt.so;general;/usr/lib/x86_64-linux-gnu/libm.so;general;/opt/ros/kinetic/lib/libkdl_parser.so;general;/opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2;general;/opt/ros/kinetic/lib/liburdf.so;general;/usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so;general;/usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so;general;/usr/lib/x86_64-linux-gnu/liburdfdom_model.so;general;/usr/lib/x86_64-linux-gnu/liburdfdom_world.so;general;/usr/lib/x86_64-linux-gnu/libtinyxml.so;general;/opt/ros/kinetic/lib/librosconsole_bridge.so;general;/opt/ros/kinetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/usr/lib/x86_64-linux-gnu/libboost_signals.so;general;/opt/ros/kinetic/lib/librosconsole.so;general;/opt/ros/kinetic/lib/librosconsole_log4cxx.so;general;/opt/ros/kinetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so;general;/opt/ros/kinetic/lib/libroscpp_serialization.so;general;/opt/ros/kinetic/lib/libxmlrpcpp.so;general;/opt/ros/kinetic/lib/librostime.so;general;/opt/ros/kinetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;general;/usr/lib/x86_64-linux-gnu/libboost_atomic.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so;general;nlopt;general;m;
+
+//Value Computed by CMake
+trac_ik_kinematics_plugin_SOURCE_DIR:STATIC=/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/src/trac_ik_kinematics_plugin
+
+//Value Computed by CMake
+trac_ik_lib_BINARY_DIR:STATIC=/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/trac_ik_lib
+
+//The directory containing a CMake configuration file for trac_ik_lib.
+trac_ik_lib_DIR:PATH=/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/devel/share/trac_ik_lib/cmake
+
+//Value Computed by CMake
+trac_ik_lib_SOURCE_DIR:STATIC=/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/src/trac_ik_lib
+
 //The directory containing a CMake configuration file for trajectory_msgs.
 trajectory_msgs_DIR:PATH=/opt/ros/kinetic/share/trajectory_msgs/cmake
+
+//The directory containing a CMake configuration file for urdf.
+urdf_DIR:PATH=/opt/ros/kinetic/share/urdf/cmake
+
+//The directory containing a CMake configuration file for urdfdom_py.
+urdfdom_py_DIR:PATH=/opt/ros/kinetic/share/urdfdom_py/cmake
+
+//The directory containing a CMake configuration file for visualization_msgs.
+visualization_msgs_DIR:PATH=/opt/ros/kinetic/share/visualization_msgs/cmake
 
 //The directory containing a CMake configuration file for xmlrpcpp.
 xmlrpcpp_DIR:PATH=/opt/ros/kinetic/share/xmlrpcpp/cmake
@@ -448,6 +553,18 @@ xmlrpcpp_DIR:PATH=/opt/ros/kinetic/share/xmlrpcpp/cmake
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: Boost_DATE_TIME_LIBRARY_DEBUG
+Boost_DATE_TIME_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_DATE_TIME_LIBRARY_RELEASE
+Boost_DATE_TIME_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_DIR
+Boost_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_INCLUDE_DIR
+Boost_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_LIBRARY_DIR_DEBUG
+Boost_LIBRARY_DIR_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_LIBRARY_DIR_RELEASE
+Boost_LIBRARY_DIR_RELEASE-ADVANCED:INTERNAL=1
 //catkin environment
 CATKIN_ENV:INTERNAL=/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/catkin_generated/env_cached.sh
 CATKIN_TEST_RESULTS_DIR:INTERNAL=/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/build/test_results
@@ -547,7 +664,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -586,6 +703,42 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+Eigen_CFLAGS:INTERNAL=-I/usr/include/eigen3
+Eigen_CFLAGS_I:INTERNAL=
+Eigen_CFLAGS_OTHER:INTERNAL=
+Eigen_FOUND:INTERNAL=1
+Eigen_INCLUDEDIR:INTERNAL=
+Eigen_INCLUDE_DIRS:INTERNAL=/usr/include/eigen3
+Eigen_LDFLAGS:INTERNAL=
+Eigen_LDFLAGS_OTHER:INTERNAL=
+Eigen_LIBDIR:INTERNAL=
+Eigen_LIBRARIES:INTERNAL=
+Eigen_LIBRARY_DIRS:INTERNAL=
+Eigen_LIBS:INTERNAL=
+Eigen_LIBS_L:INTERNAL=
+Eigen_LIBS_OTHER:INTERNAL=
+Eigen_LIBS_PATHS:INTERNAL=
+Eigen_PREFIX:INTERNAL=/usr
+Eigen_STATIC_CFLAGS:INTERNAL=-I/usr/include/eigen3
+Eigen_STATIC_CFLAGS_I:INTERNAL=
+Eigen_STATIC_CFLAGS_OTHER:INTERNAL=
+Eigen_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/eigen3
+Eigen_STATIC_LDFLAGS:INTERNAL=
+Eigen_STATIC_LDFLAGS_OTHER:INTERNAL=
+Eigen_STATIC_LIBDIR:INTERNAL=
+Eigen_STATIC_LIBRARIES:INTERNAL=
+Eigen_STATIC_LIBRARY_DIRS:INTERNAL=
+Eigen_STATIC_LIBS:INTERNAL=
+Eigen_STATIC_LIBS_L:INTERNAL=
+Eigen_STATIC_LIBS_OTHER:INTERNAL=
+Eigen_STATIC_LIBS_PATHS:INTERNAL=
+Eigen_VERSION:INTERNAL=3.2.92
+Eigen_eigen3_INCLUDEDIR:INTERNAL=
+Eigen_eigen3_LIBDIR:INTERNAL=
+Eigen_eigen3_PREFIX:INTERNAL=
+Eigen_eigen3_VERSION:INTERNAL=
+//Details about finding PkgConfig
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v0.29.1()]
 //Details about finding PythonInterp
 FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[/usr/bin/python2][v2.7.12()]
 //Details about finding Threads
@@ -610,10 +763,61 @@ GTEST_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 GTEST_MAIN_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GTEST_MAIN_LIBRARY_DEBUG
 GTEST_MAIN_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PYTHON_EXECUTABLE
 PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
 //This needs to be in PYTHONPATH when 'setup.py install' is called.
 //  And it needs to match.  But setuptools won't tell us where
 // it will install things.
 PYTHON_INSTALL_DIR:INTERNAL=lib/python2.7/dist-packages
+//Components requested for this build tree.
+_Boost_COMPONENTS_SEARCHED:INTERNAL=date_time
+//Last used Boost_INCLUDE_DIR value.
+_Boost_INCLUDE_DIR_LAST:INTERNAL=/usr/include
+//Last used Boost_LIBRARY_DIR_DEBUG value.
+_Boost_LIBRARY_DIR_DEBUG_LAST:INTERNAL=/usr/lib/x86_64-linux-gnu
+//Last used Boost_LIBRARY_DIR_RELEASE value.
+_Boost_LIBRARY_DIR_RELEASE_LAST:INTERNAL=/usr/lib/x86_64-linux-gnu
+//Last used Boost_NAMESPACE value.
+_Boost_NAMESPACE_LAST:INTERNAL=boost
+//Last used Boost_USE_MULTITHREADED value.
+_Boost_USE_MULTITHREADED_LAST:INTERNAL=TRUE
+__pkg_config_checked_Eigen:INTERNAL=1
+__pkg_config_checked_pkg_nlopt:INTERNAL=1
+pkg_nlopt_CFLAGS:INTERNAL=
+pkg_nlopt_CFLAGS_I:INTERNAL=
+pkg_nlopt_CFLAGS_OTHER:INTERNAL=
+pkg_nlopt_FOUND:INTERNAL=1
+pkg_nlopt_INCLUDEDIR:INTERNAL=/usr/include
+pkg_nlopt_INCLUDE_DIRS:INTERNAL=
+pkg_nlopt_LDFLAGS:INTERNAL=-lnlopt;-lm
+pkg_nlopt_LDFLAGS_OTHER:INTERNAL=
+pkg_nlopt_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
+pkg_nlopt_LIBRARIES:INTERNAL=nlopt;m
+pkg_nlopt_LIBRARY_DIRS:INTERNAL=
+pkg_nlopt_LIBS:INTERNAL=
+pkg_nlopt_LIBS_L:INTERNAL=
+pkg_nlopt_LIBS_OTHER:INTERNAL=
+pkg_nlopt_LIBS_PATHS:INTERNAL=
+pkg_nlopt_PREFIX:INTERNAL=/usr
+pkg_nlopt_STATIC_CFLAGS:INTERNAL=
+pkg_nlopt_STATIC_CFLAGS_I:INTERNAL=
+pkg_nlopt_STATIC_CFLAGS_OTHER:INTERNAL=
+pkg_nlopt_STATIC_INCLUDE_DIRS:INTERNAL=
+pkg_nlopt_STATIC_LDFLAGS:INTERNAL=-lnlopt;-lm
+pkg_nlopt_STATIC_LDFLAGS_OTHER:INTERNAL=
+pkg_nlopt_STATIC_LIBDIR:INTERNAL=
+pkg_nlopt_STATIC_LIBRARIES:INTERNAL=nlopt;m
+pkg_nlopt_STATIC_LIBRARY_DIRS:INTERNAL=
+pkg_nlopt_STATIC_LIBS:INTERNAL=
+pkg_nlopt_STATIC_LIBS_L:INTERNAL=
+pkg_nlopt_STATIC_LIBS_OTHER:INTERNAL=
+pkg_nlopt_STATIC_LIBS_PATHS:INTERNAL=
+pkg_nlopt_VERSION:INTERNAL=2.4.2
+pkg_nlopt_nlopt_INCLUDEDIR:INTERNAL=
+pkg_nlopt_nlopt_LIBDIR:INTERNAL=
+pkg_nlopt_nlopt_PREFIX:INTERNAL=
+pkg_nlopt_nlopt_VERSION:INTERNAL=
+prefix_result:INTERNAL=
 

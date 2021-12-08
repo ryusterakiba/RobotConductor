@@ -44,7 +44,7 @@ def main():
             arm_name = input("Enter arm name: ")
 
             #Both arms to initial position
-            planner        = PathPlanner(arm_name,1)
+            planner        = PathPlanner(arm_name)
             current_joint  = planner._group.get_current_joint_values()
 
             pose_name = input("Enter name for pose: ")

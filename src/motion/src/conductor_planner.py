@@ -56,7 +56,7 @@ class PathPlanner(object):
         self._group.set_workspace([-2, -2, -2, 2, 2, 2])
 
         # Set the velocity of the arm
-        self._group.set_max_velocity_scaling_factor(1.0))
+        self._group.set_max_velocity_scaling_factor(1.0)
         self._group.set_max_acceleration_scaling_factor(1.0)
         
         # Sleep for a bit to ensure that all inititialization has finished
@@ -101,7 +101,6 @@ class PathPlanner(object):
         Outputs:
         path: A moveit_msgs/RobotTrajectory path scaled to speed
         """
-        try:
             
         self._group.set_joint_value_target(target)
         self._group.set_start_state_to_current_state()
@@ -116,10 +115,11 @@ class PathPlanner(object):
         for i in range(n_points):            
             time_step = plan.joint_trajectory.points[i].time_from_start / speed
             new_plan.joint_trajectory.points[i].time_from_start = time_step
-                
+            scaled_speed = list()
             for j in range(n_joints):
-                scaled_speed = plan.joint_trajectory.points[i].velocities[j] * speed
-                new_plan.joint_trajectory.points[i].velocities.append(plan.joint_trajectory.points[i].velocities[j])
+                scaled_speed.append(plan.joint_trajectory.points[i].velocities[j] * speed)
+
+            new_plan.joint_trajectory.points[i].velocities = scaled_speed
 
         return new_plan
 

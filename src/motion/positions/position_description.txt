@@ -1,0 +1,49 @@
+Both arms:
+Neutral: neutral_both 
+
+#########################
+Right arm:
+4/4
+Beat 1: right_beat_1
+Beat 2: right_beat_2
+Beat 3: right_beat_3
+Beat 4: right_beat_4
+
+3/4
+Beat 1:
+Beat 2:
+Beat 3:
+
+Ending motions
+Hold: right_last_hold
+Swing: right_last_swing
+End/cutoff: right_last_end
+
+########################
+Left arm:
+4/4
+Beat 1: left_beat_1
+Beat 2: left_beat_2
+Beat 3: left_beat_3
+Beat 4: left_beat_4
+
+3/4
+Beat 1: 
+Beat 2: 
+Beat 3: 
+
+Ending motions
+Hold: left_last_hold
+Swing: left_last_swing
+End/cutoff: left_last_end
+
+Dynamics:
+Crescendo- 
+-start:
+-intermediate: 
+-end:
+
+Decrescendo-
+-start:
+-intermediate: 
+-end:
