@@ -8,7 +8,7 @@ Reset position:
 rosrun baxter_tools tuck_arms.py -u
 
 
-Window 1:
+Window 1: maybe don't need
 	roscore
 
 Window 2 (Run joint trajectory controller):

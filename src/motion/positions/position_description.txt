@@ -21,6 +21,8 @@ End/cutoff: right_last_end
 
 ########################
 Left arm:
+Neutral: left_neutral
+
 4/4
 Beat 1: left_beat_1
 Beat 2: left_beat_2
