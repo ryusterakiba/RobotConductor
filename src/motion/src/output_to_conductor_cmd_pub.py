@@ -40,8 +40,8 @@ right_arm_last_note_half = ["right_beat_1","right_beat_2","right_last_hold","rig
 left_arm_last_note_half = ["left_beat_1","left_beat_2","left_last_hold","left_last_swing","left_last_end"]
 
 # SPECIFIC TO LAST NOTE = whole NOTE
-right_arm_last_note_whole = ["right_last_hold","right_last_swing","right_last_end"]
-left_arm_last_note_whole = ["left_last_hold","left_last_swing","left_last_end"]
+right_arm_last_note_whole = ["right_beat_1","right_last_hold","right_last_swing","right_last_end"]
+left_arm_last_note_whole = ["left_beat_1","left_last_hold","left_last_swing","left_last_end"]
 
 #Crescendo over 4 beats
 left_arm_crescendo_rest = ["left_neutral"]*4
@@ -65,7 +65,7 @@ def duration_of_last_note(line):
 	for note in split_by_space:
 		split_by_backslash = note.split("/")
 		last_note = float(split_by_backslash[1].split("]")[0])
-	return last_note
+	return 4/last_note
 
 def talker():
 	pub = rospy.Publisher('conductor_commands', music_commands, queue_size=10) #only 1 message is gonna be realistically sent
@@ -105,9 +105,11 @@ def talker():
 		if (last_note_duration == 2):
 			robot_commands.left_arm_motions = left_arm_motion * int(total_num_measures - 1)
 		elif (last_note_duration == 4):
-			robot_commands.left_arm_motions = left_arm_motion * int(total_num_measures - 3)
+			robot_commands.left_arm_motions = left_arm_motion * int(total_num_measures - 4)
 			robot_commands.left_arm_motions.extend(left_arm_crescendo_rest)
 			robot_commands.left_arm_motions.extend(left_arm_crescendo)
+			robot_commands.left_arm_motions.extend(left_arm_motion)
+		
 
 		# Last measure
 		if (last_note_duration == 2):

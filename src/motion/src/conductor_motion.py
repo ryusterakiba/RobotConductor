@@ -46,7 +46,7 @@ def timed_joint_path(right_arm_motion,left_arm_motion,speed,tempo):
 
             #Execute
             if i == 0:
-                raw_input("Press Enter to go")
+                raw_input("Press Enter to go! Will begin with a pre-beat motion...")
             planner.execute_plan(plan,timed = True)
             rospy.sleep(time)
             planner._group.stop()
@@ -93,6 +93,7 @@ def main(message):
 
     #Initial Position
     go_to_joint_position("both_arms","neutral_both")
+    #go_to_joint_position("left_arm","left_crescendo_start")
 
 
     #Read command from conductor_commands topic
@@ -102,7 +103,7 @@ def main(message):
 
     #Execute commands
     # TODO: ideally, scale arm velocity based on tempo with a linear function
-    raw_input("Press Enter to go! Will begin with a pre-beat motion...")
+    
     timed_joint_path(right_arm_motions,left_arm_motions,1.8,tempo)
 
 def listener():

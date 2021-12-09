@@ -19,9 +19,11 @@ Window 3 (Start MoveIt):
 
 Window 4 (Reads music and publishes to topic): 
 	rosrun motion output_to_conductor_cmd_pub.py
+	Input hot_cross_buns or canon_in_d
 	
 Window 5 (Listens to topic and executes commands): 
 	rosrun motion conductor_motion.py
+	press enter with song start
 
 
 
