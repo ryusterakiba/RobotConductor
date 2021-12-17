@@ -21,16 +21,15 @@ from motion.msg import music_commands
 from conductor_planner import PathPlanner
 
 '''
-ASSUMPTIONS FOR NOW: 
+ASSUMPTIONS: 
 - EVERYTHING IS IN 4/4 TIME
 - THE LAST NOTE WILL BE A HALF NOTE
 '''
 
-
 # ============================================================================ #
 
 # Feel free to change name of file based on what song you're conducting!!!
-file_location = '/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/src/sensing/src/output/'
+file_location = 'src/sensing/src/output/'
 music = 'hcb_theoretical_wo_time.txt'
 right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3_fix","right_beat_4"]
 left_arm_motion  = ["left_beat_1_fix","left_beat_2_fix","left_beat_3_fix","left_beat_4_fix"]
@@ -98,9 +97,6 @@ def talker():
 		robot_commands = music_commands()
 		# Need to separate functionality later on (if more time). For now, both arms mirror each other up until the last measure
 		robot_commands.right_arm_motions = right_arm_motion * int(total_num_measures - 1)
-		
-		print(total_num_measures)
-		print(last_note_duration)
 
 		if (last_note_duration == 2):
 			robot_commands.left_arm_motions = left_arm_motion * int(total_num_measures - 1)
@@ -120,19 +116,21 @@ def talker():
 			robot_commands.left_arm_motions.extend(left_arm_last_note_whole)
 
 
-		# Ending sequence
-		tempo = np.ones(len(robot_commands.right_arm_motions))
+		# SET BEATS_PER_MINUTE HERE !!!!!!!!!!!
+
+		beats_per_minute = 60.0
+
+		if ((beats_per_minute > 80) or (beats_per_minute < 0)):
+			raise ValueError("Beats per minute is outside the range [0, 80]")
+
+		tempo = np.ones(len(robot_commands.right_arm_motions)) * float(60.0 / beats_per_minute)
 
 		if (last_note_duration == 2):
 			#Cutoff actions, slower speed
-			tempo[-3:] = np.ones(3)
+			tempo[-3:] = [tempo[-3], tempo[-2], tempo[-1]]
 		elif (last_note_duration == 4):
-			tempo[-3:] = np.ones(3)*1.5
+			tempo[-3:] = [tempo[-3] * 1.5, tempo[-2] * 1.5, tempo[-1] * 1.5]
 		robot_commands.tempo = tempo
-
-		print(len(robot_commands.tempo))
-		print(len(robot_commands.right_arm_motions))
-		print(len(robot_commands.left_arm_motions))
 
 		pub.publish(robot_commands)
 		print("Ready to run conductor_motion.py!")

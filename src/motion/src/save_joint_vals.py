@@ -27,7 +27,7 @@ def main():
     """
     while not rospy.is_shutdown():
 
-        try:
+        try
             arm_name = raw_input("Enter arm name: ")
 
             #Both arms to initial position

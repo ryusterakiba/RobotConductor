@@ -21,6 +21,3 @@ Window 3 (Reads music and publishes to topic):
 Window 4 (Listens to topic and executes commands): 
 	rosrun motion conductor_motion.py
 	press enter with song start
-
-
-

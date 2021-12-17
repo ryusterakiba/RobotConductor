@@ -91,7 +91,7 @@ class PathPlanner(object):
 
         return plan
 
-    def plan_to_joint_goal(self, target,speed):
+    def plan_to_joint_goal(self, target, speed):
         """
         Generates a plan given an joint configuration
 
