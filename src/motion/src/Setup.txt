@@ -1,4 +1,4 @@
-Connect to robot (5 windows):
+Connect to robot (4 windows):
 ./baxter.sh asimov.local
 
 Enable:
@@ -8,20 +8,17 @@ Reset position:
 rosrun baxter_tools tuck_arms.py -u
 
 
-Window 1: maybe don't need
-	roscore
-
-Window 2 (Run joint trajectory controller):
+Window 1 (Run joint trajectory controller):
 	rosrun baxter_interface joint_trajectory_action_server.py
 
-Window 3 (Start MoveIt):
+Window 2 (Start MoveIt):
 	roslaunch baxter_conductor_moveit_config demo_baxter.launch right_electric_gripper:=true left_electric_gripper:=true
 
-Window 4 (Reads music and publishes to topic): 
+Window 3 (Reads music and publishes to topic): 
 	rosrun motion output_to_conductor_cmd_pub.py
 	Input hot_cross_buns or canon_in_d
 	
-Window 5 (Listens to topic and executes commands): 
+Window 4 (Listens to topic and executes commands): 
 	rosrun motion conductor_motion.py
 	press enter with song start
 

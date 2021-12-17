@@ -6,8 +6,13 @@ Right arm:
 4/4
 Beat 1: right_beat_1
 Beat 2: right_beat_2
-Beat 3: right_beat_3 
+Beat 3: right_beat_3_fix
 Beat 4: right_beat_4
+4/4 fast - cutoff seems to be 75bpm
+Beat 1: right_beat_1_fast
+Beat 2: right_beat_2_fast
+Beat 3: right_beat_3_fast
+Beat 4: right_beat_4_fast
 
 3/4
 Beat 1:
@@ -15,7 +20,7 @@ Beat 2:
 Beat 3:
 
 Ending motions
-Hold: right_last_hold
+Hold: right_last_hold_fix
 Swing: right_last_swing
 End/cutoff: right_last_end
 
@@ -24,10 +29,15 @@ Left arm:
 Neutral: left_neutral
 
 4/4
-Beat 1: left_beat_1
-Beat 2: left_beat_2
-Beat 3: left_beat_3
-Beat 4: left_beat_4
+Beat 1: left_beat_1_fix
+Beat 2: left_beat_2_fix
+Beat 3: left_beat_3_fix
+Beat 4: left_beat_4_fix
+4/4 fast
+Beat 1: left_beat_1_fast
+Beat 2: left_beat_2_fast
+Beat 3: left_beat_3_fast
+Beat 4: left_beat_4_fast
 
 3/4
 Beat 1: 
@@ -35,9 +45,9 @@ Beat 2:
 Beat 3: 
 
 Ending motions
-Hold: left_last_hold
-Swing: left_last_swing
-End/cutoff: left_last_end
+Hold: left_last_hold_fix
+Swing: left_last_swing_fix
+End/cutoff: left_last_end_fix
 
 Dynamics:
 Crescendo- 

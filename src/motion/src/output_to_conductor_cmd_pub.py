@@ -32,19 +32,19 @@ ASSUMPTIONS FOR NOW:
 # Feel free to change name of file based on what song you're conducting!!!
 file_location = '/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/src/sensing/src/output/'
 music = 'hcb_theoretical_wo_time.txt'
-right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4"]
-left_arm_motion  = ["left_beat_1","left_beat_2","left_beat_3","left_beat_4"]
+right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3_fix","right_beat_4"]
+left_arm_motion  = ["left_beat_1_fix","left_beat_2_fix","left_beat_3_fix","left_beat_4_fix"]
 
 # SPECIFIC TO LAST NOTE = HALF NOTE
-right_arm_last_note_half = ["right_beat_1","right_beat_2","right_last_hold","right_last_swing","right_last_end"]
-left_arm_last_note_half = ["left_beat_1","left_beat_2","left_last_hold","left_last_swing","left_last_end"]
+right_arm_last_note_half = ["right_beat_1","right_beat_2","right_beat_3_fix","right_last_hold_fix","right_last_swing","right_last_end"]
+left_arm_last_note_half = ["left_beat_1_fix","left_beat_2_fix","left_beat_3_fix","left_last_hold_fix","left_last_swing_fix","left_last_end_fix"]
 
 # SPECIFIC TO LAST NOTE = whole NOTE
-right_arm_last_note_whole = ["right_beat_1","right_last_hold","right_last_swing","right_last_end"]
-left_arm_last_note_whole = ["left_beat_1","left_last_hold","left_last_swing","left_last_end"]
+right_arm_last_note_whole = ["right_beat_1","right_last_hold_fix","right_last_swing","right_last_end"]
+left_arm_last_note_whole = ["left_beat_1_fix","left_last_hold_fix","left_last_swing_fix","left_last_end_fix"]
 
 #Crescendo over 4 beats
-left_arm_crescendo_rest = ["left_neutral"]*4
+left_arm_crescendo_rest = ["left_beat_1_fix","left_beat_2_fix","left_neutral","left_neutral"]
 left_arm_crescendo = ["left_crescendo_start","left_crescendo_1_4",
 					"left_crescendo_2_4","left_crescendo_3_4"]
 
@@ -125,7 +125,7 @@ def talker():
 
 		if (last_note_duration == 2):
 			#Cutoff actions, slower speed
-			tempo[-3:] = np.ones(3)*1.3
+			tempo[-3:] = np.ones(3)
 		elif (last_note_duration == 4):
 			tempo[-3:] = np.ones(3)*1.5
 		robot_commands.tempo = tempo
@@ -133,7 +133,6 @@ def talker():
 		print(len(robot_commands.tempo))
 		print(len(robot_commands.right_arm_motions))
 		print(len(robot_commands.left_arm_motions))
-
 
 		pub.publish(robot_commands)
 		print("Ready to run conductor_motion.py!")

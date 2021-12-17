@@ -22,41 +22,55 @@ from conductor_planner import PathPlanner
 
 # ============================================================================ #
 
-file_location = '/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/src/motion/positions/'
+file_location = "src/motion/positions/"
 
 # ============================================================================ #
-'''
-Execution
 
-A way without using waypoints.
-Use joint positions
-'''
-def timed_joint_path(right_arm_motion,left_arm_motion,speed,tempo):
+# Execute a timed joint path, consisting of a list of positions for the 
+# two arms to hit at each beat.
+def timed_joint_path(right_arm_motion, left_arm_motion, speed, tempo):
+
+    # Instantiate the path planner
     planner = PathPlanner("both_arms")
     
+    # Iterate through each of the positions. Move both arms to the given
+    # position, then repeat (go to the next position...)
     for i in range(len(right_arm_motion)):
+
+        # Record the length of time between this position and the next
         time = rospy.Duration.from_sec(tempo[i])
 
-        joint_goal_right = np.loadtxt(file_location + right_arm_motion[i]+ ".txt" ).tolist()
-        joint_goal_left  = np.loadtxt(file_location + left_arm_motion[i]+ ".txt").tolist()
-        joint_goal = joint_goal_left+joint_goal_right
+        # Create the joint goals for the current position by specifying where
+        # the left and right arms should go now
+        joint_goal_right = np.loadtxt(file_location + right_arm_motion[i] + ".txt" ).tolist()
+        joint_goal_left  = np.loadtxt(file_location + left_arm_motion[i] + ".txt").tolist()
+        joint_goal = joint_goal_left + joint_goal_right
+
+        # Start planning and executing the movement
         try:
-            #Plan
+
+            # Use the path planner to plan a trajectory to this joint position
             plan = planner.plan_to_joint_goal(joint_goal, speed)
 
-            #Execute
+            # Print a wakeup message at the very first movement
             if i == 0:
                 raw_input("Press Enter to go! Will begin with a pre-beat motion...")
+
+            # Use the path planner to execute the planned trajectory
             planner.execute_plan(plan,timed = True)
+
+            # Wait until it is time for the next movement to begin
             rospy.sleep(time)
             planner._group.stop()
             
+        # Catch an error and halt the program if needed
         except Exception as e:
             print e
             traceback.print_exc()
-    
 
-def go_to_joint_position(arm,position):
+# ============================================================================ #
+    
+def go_to_joint_position(arm, position):
     while not rospy.is_shutdown():
         try:
             planner = PathPlanner(arm)
@@ -74,35 +88,48 @@ def go_to_joint_position(arm,position):
 def main(message):
     """
     Main Script
+    right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4","right_beat_1",
+                            "right_beat_2","right_beat_3","right_beat_4","right_beat_1",
+                            "right_last_hold","right_last_swing","right_last_end"]
+    left_arm_motion  = ["left_neutral","left_neutral","left_neutral","left_neutral","left_beat_1",
+                            "left_beat_2","left_beat_3","left_beat_4","left_beat_1",
+                            "left_last_hold","left_last_swing","left_last_end"]
+    left_arm_motion  = ["left_crescendo_start","left_crescendo_1_4","left_crescendo_2_4",
+                            "left_crescendo_3_4","left_crescendo_end",
+                            "left_neutral","left_neutral","left_beat_4","left_beat_1",
+                            "left_last_hold","left_last_swing","left_last_end"]
+
+
+    tempo = np.ones(12)
+    tempo[9:] = np.ones(3)*1.5
     """
-    # right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4","right_beat_1",
-    #                         "right_beat_2","right_beat_3","right_beat_4","right_beat_1",
-    #                         "right_last_hold","right_last_swing","right_last_end"]
-    # left_arm_motion  = ["left_neutral","left_neutral","left_neutral","left_neutral","left_beat_1",
-    #                         "left_beat_2","left_beat_3","left_beat_4","left_beat_1",
-    #                         "left_last_hold","left_last_swing","left_last_end"]
-    # left_arm_motion  = ["left_crescendo_start","left_crescendo_1_4","left_crescendo_2_4",
-    #                         "left_crescendo_3_4","left_crescendo_end",
-    #                         "left_neutral","left_neutral","left_beat_4","left_beat_1",
-    #                         "left_last_hold","left_last_swing","left_last_end"]
 
-
-    # tempo = np.ones(12)
-    # tempo[9:] = np.ones(3)*1.5
-
-
-    #Initial Position
+    # Initial Position
     go_to_joint_position("both_arms","neutral_both")
-    #go_to_joint_position("left_arm","left_crescendo_start")
 
+    # go_to_joint_position("right_arm","right_beat_2")
+    # go_to_joint_position("left_arm","left_beat_2_fix")
+    # raw_input("Press Enter")
+
+    # go_to_joint_position("right_arm","right_beat_3_fix")
+    # go_to_joint_position("left_arm","left_beat_3_fix")
+    # raw_input("Press Enter")
+
+    # go_to_joint_position("right_arm","right_last_hold_fix")
+    # go_to_joint_position("left_arm","left_last_hold_fix")
+    # raw_input("Press Enter")
+
+    # go_to_joint_position("right_arm","right_last_swing")
+    # go_to_joint_position("left_arm","left_last_swing_fix")
+    # raw_input("Press Enter")
+
+    # go_to_joint_position("right_arm","right_last_end")
+    # go_to_joint_position("left_arm","left_last_end_fix")
 
     #Read command from conductor_commands topic
     tempo = message.tempo
     right_arm_motions = message.right_arm_motions
     left_arm_motions = message.left_arm_motions
-
-    #Execute commands
-    # TODO: ideally, scale arm velocity based on tempo with a linear function
     
     timed_joint_path(right_arm_motions,left_arm_motions,1.8,tempo)
 
