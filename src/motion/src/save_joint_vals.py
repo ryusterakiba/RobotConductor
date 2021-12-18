@@ -36,7 +36,7 @@ def main():
 
             pose_name = raw_input("Enter name for pose: ")
             file_location = '/home/cc/ee106a/fl21/class/ee106a-abw/ros_workspaces/robot_conductor_ryu/src/motion/positions/'
-            np.savetxt(file_location + pose_name+".txt",np.array(current_joint))
+            np.savetxt(file_location + pose_name +".txt",np.array(current_joint))
             
         except Exception as e:
             print e

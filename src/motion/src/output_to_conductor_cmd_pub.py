@@ -26,24 +26,27 @@ ASSUMPTIONS:
 - THE LAST NOTE WILL BE A HALF NOTE
 '''
 
+with open('bpm.txt') as f:
+    beats_per_minute = float(f.readlines()[0])
+
+file_location = 'src/sensing/src/output/'
+music = 'SONG.txt'
+
 # ============================================================================ #
 
-# Feel free to change name of file based on what song you're conducting!!!
-file_location = 'src/sensing/src/output/'
-music = 'hcb_theoretical_wo_time.txt'
-right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3_fix","right_beat_4"]
-left_arm_motion  = ["left_beat_1_fix","left_beat_2_fix","left_beat_3_fix","left_beat_4_fix"]
+right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4"]
+left_arm_motion  = ["left_beat_1","left_beat_2","left_beat_3","left_beat_4"]
 
 # SPECIFIC TO LAST NOTE = HALF NOTE
-right_arm_last_note_half = ["right_beat_1","right_beat_2","right_beat_3_fix","right_last_hold_fix","right_last_swing","right_last_end"]
-left_arm_last_note_half = ["left_beat_1_fix","left_beat_2_fix","left_beat_3_fix","left_last_hold_fix","left_last_swing_fix","left_last_end_fix"]
+right_arm_last_note_half = ["right_beat_1","right_beat_2","right_beat_3","right_last_hold","right_last_swing","right_last_end"]
+left_arm_last_note_half = ["left_beat_1","left_beat_2","left_beat_3","left_last_hold","left_last_swing","left_last_end"]
 
 # SPECIFIC TO LAST NOTE = whole NOTE
-right_arm_last_note_whole = ["right_beat_1","right_last_hold_fix","right_last_swing","right_last_end"]
-left_arm_last_note_whole = ["left_beat_1_fix","left_last_hold_fix","left_last_swing_fix","left_last_end_fix"]
+right_arm_last_note_whole = ["right_beat_1","right_last_hold","right_last_swing","right_last_end"]
+left_arm_last_note_whole = ["left_beat_1","left_last_hold","left_last_swing","left_last_end"]
 
 #Crescendo over 4 beats
-left_arm_crescendo_rest = ["left_beat_1_fix","left_beat_2_fix","left_neutral","left_neutral"]
+left_arm_crescendo_rest = ["left_beat_1","left_beat_2","left_neutral","left_neutral"]
 left_arm_crescendo = ["left_crescendo_start","left_crescendo_1_4",
 					"left_crescendo_2_4","left_crescendo_3_4"]
 
@@ -71,16 +74,6 @@ def talker():
 	r = rospy.Rate(10)
 
 	while not rospy.is_shutdown():
-		message = raw_input("Enter song file (either hot_cross_buns or canon_in_d : ")
-		
-
-		if message == "hot_cross_buns":
-			music = 'hcb_theoretical_wo_time.txt'
-		elif message == "canon_in_d":
-			music = "canon_in_d_theoretical_wo_time.txt"
-		else:
-			print("Invalid song file!")
-			break
 
 		music_file = file_location + music
 
@@ -118,10 +111,12 @@ def talker():
 
 		# SET BEATS_PER_MINUTE HERE !!!!!!!!!!!
 
-		beats_per_minute = 60.0
+		global beats_per_minute
 
-		if ((beats_per_minute > 80) or (beats_per_minute < 0)):
-			raise ValueError("Beats per minute is outside the range [0, 80]")
+		if ((beats_per_minute > 80.0) or (beats_per_minute < 10.0)):
+			beats_per_minute = 60
+			raise ValueError("Beats per minute is outside the range [10, 80]")
+			return None
 
 		tempo = np.ones(len(robot_commands.right_arm_motions)) * float(60.0 / beats_per_minute)
 
@@ -133,7 +128,6 @@ def talker():
 		robot_commands.tempo = tempo
 
 		pub.publish(robot_commands)
-		print("Ready to run conductor_motion.py!")
 		r.sleep()
 
 if __name__ == '__main__':
