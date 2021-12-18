@@ -116,12 +116,11 @@ def debug():
     tempo = np.ones(12)
     tempo[9:] = np.ones(3) * 1.5
 
-    go_to_joint_position("right_arm","right_beat_1")
-    go_to_joint_position("left_arm","left_beat_1")
+    go_to_joint_position("both_arms", "neutral_both")
     raw_input("Press Enter")
 
-    go_to_joint_position("right_arm","right_test")
-    go_to_joint_position("left_arm","left_test")
+    go_to_joint_position("right_arm","right_beat_1")
+    go_to_joint_position("left_arm","left_beat_1")
     raw_input("Press Enter")
 
     go_to_joint_position("right_arm","right_beat_2")
