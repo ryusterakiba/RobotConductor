@@ -30,25 +30,40 @@ with open('bpm.txt') as f:
     beats_per_minute = float(f.readlines()[0])
 
 file_location = 'src/sensing/src/output/'
-music = 'SONG.txt'
+music = 'SONG_edited.txt'
 
 # ============================================================================ #
 
-right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4"]
-left_arm_motion  = ["left_beat_1","left_beat_2","left_beat_3","left_beat_4"]
+if (beats_per_minute > 60):
 
-# SPECIFIC TO LAST NOTE = HALF NOTE
-right_arm_last_note_half = ["right_beat_1","right_beat_2","right_beat_3","right_last_hold","right_last_swing","right_last_end"]
-left_arm_last_note_half = ["left_beat_1","left_beat_2","left_beat_3","left_last_hold","left_last_swing","left_last_end"]
+	# NORMAL 4/4 MOTIONS
+	right_arm_motion = ["right_beat_1_fast","right_beat_2_fast","right_beat_3_fast","right_beat_4_fast"]
+	left_arm_motion  = ["left_beat_1_fast","left_beat_2_fast","left_beat_3_fast","left_beat_4_fast"]
 
-# SPECIFIC TO LAST NOTE = whole NOTE
+	# SPECIFIC TO LAST NOTE = HALF NOTE
+	right_arm_last_note_half = ["right_beat_1_fast","right_beat_2_fast","right_beat_3_fast","right_last_hold","right_last_swing","right_last_end"]
+	left_arm_last_note_half = ["left_beat_1_fast","left_beat_2_fast","left_beat_3_fast","left_last_hold","left_last_swing","left_last_end"]
+
+else:
+
+	# NORMAL 4/4 MOTIONS
+	right_arm_motion = ["right_beat_1","right_beat_2","right_beat_3","right_beat_4"]
+	left_arm_motion  = ["left_beat_1","left_beat_2","left_beat_3","left_beat_4"]
+
+	# SPECIFIC TO LAST NOTE = HALF NOTE
+	right_arm_last_note_half = ["right_beat_1","right_beat_2","right_beat_3","right_last_hold","right_last_swing","right_last_end"]
+	left_arm_last_note_half = ["left_beat_1","left_beat_2","left_beat_3","left_last_hold","left_last_swing","left_last_end"]
+
+# ============================================================================ #
+
+# SPECIFIC TO LAST NOTE = WHOLE NOTE
 right_arm_last_note_whole = ["right_beat_1","right_last_hold","right_last_swing","right_last_end"]
 left_arm_last_note_whole = ["left_beat_1","left_last_hold","left_last_swing","left_last_end"]
 
 #Crescendo over 4 beats
 left_arm_crescendo_rest = ["left_beat_1","left_beat_2","left_neutral","left_neutral"]
 left_arm_crescendo = ["left_crescendo_start","left_crescendo_1_4",
-					"left_crescendo_2_4","left_crescendo_3_4"]
+						"left_crescendo_2_4","left_crescendo_3_4"]
 
 # ============================================================================ #
 

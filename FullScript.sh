@@ -19,9 +19,12 @@ echo "===================== Launched joint trajectory action server"
 
 # echo "===================== Recorded song input"
 
-# rosrun sensing main.py camera_input output &
+cd src/sensing/src
+python3 main.py
+sed '$ s/.$//' output/SONG.txt | sed '1d' > output/SONG_edited.txt
+cd ../../..
 
-# echo "===================== Parsed song input"
+echo "===================== Parsed song input"
 
 roslaunch baxter_conductor_moveit_config demo_baxter.launch right_electric_gripper:=true left_electric_gripper:=true &
 

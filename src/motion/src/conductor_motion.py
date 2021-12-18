@@ -65,10 +65,15 @@ def timed_joint_path(right_arm_motion, left_arm_motion, tempo):
 
         # I found experimentally that calling planner.plan_to_joint_goal() with speed = 1
         # causes the robot's joints to move at about 0.6 radians per second
-        speed = (speed_angular / 1.0)
+        if tempo < 1:
+            speed = (speed_angular / 1.0)
+        else:
+            speed = (speed_angular / 1.0)
 
         # Start planning and executing the movement
         try:
+
+            print(speed)
 
             speed = min(speed, 3.0)
 
@@ -119,20 +124,20 @@ def debug():
     go_to_joint_position("both_arms", "neutral_both")
     raw_input("Press Enter")
 
-    go_to_joint_position("right_arm","right_beat_1")
-    go_to_joint_position("left_arm","left_beat_1")
+    go_to_joint_position("right_arm","right_beat_1_fast")
+    go_to_joint_position("left_arm","left_beat_1_fast")
     raw_input("Press Enter")
 
-    go_to_joint_position("right_arm","right_beat_2")
-    go_to_joint_position("left_arm","left_beat_2")
+    go_to_joint_position("right_arm","right_beat_2_fast")
+    go_to_joint_position("left_arm","left_beat_2_fast")
     raw_input("Press Enter")
 
-    go_to_joint_position("right_arm","right_beat_3")
-    go_to_joint_position("left_arm","left_beat_3")
+    go_to_joint_position("right_arm","right_beat_3_fast")
+    go_to_joint_position("left_arm","left_beat_3_fast")
     raw_input("Press Enter")
 
-    go_to_joint_position("right_arm","right_beat_4")
-    go_to_joint_position("left_arm","left_beat_4")
+    go_to_joint_position("right_arm","right_beat_4_fast")
+    go_to_joint_position("left_arm","left_beat_4_fast")
     raw_input("Press Enter")
 
     go_to_joint_position("right_arm","right_last_hold")
@@ -158,10 +163,8 @@ def main(message):
     raw_input("Press Enter to go!")
 
     go_to_joint_position("both_arms", "neutral_both")
-    
-    debug()
 
-    # timed_joint_path(right_arm_motions,left_arm_motions, tempo)
+    timed_joint_path(right_arm_motions,left_arm_motions, tempo)
 
 def listener():
     rospy.Subscriber("conductor_commands", music_commands,main)
